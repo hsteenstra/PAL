@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Morse Shipbuilders PAL Hub</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,7 +14,7 @@
 <header class="topbar">
   <div>
     <h1>⚓ Morse Shipbuilders PAL Hub</h1>
-    <p>Student tutoring & academic support</p>
+    <p>Find tutors, subjects, and support</p>
   </div>
 
   <a class="admin-btn" href="admin.html">Admin</a>
@@ -19,19 +22,32 @@
 
 <div class="container">
 
-  <input id="search" placeholder="Search by name, subject, or skill...">
+  <!-- SEARCH BOX -->
+  <input
+    id="search"
+    type="text"
+    placeholder="Search by name, subject, or skill..."
+  >
 
+  <!-- STUDENT GRID -->
   <div id="grid"></div>
 
 </div>
 
+<!-- SCRIPTS -->
 <script src="app.js"></script>
-<script>
-  renderStudent();
 
-  document.getElementById("search").addEventListener("input", (e) => {
+<script>
+/* SAFE INIT (fixes blank page issue) */
+window.addEventListener("DOMContentLoaded", () => {
+  loadTutors();
+
+  const search = document.getElementById("search");
+
+  search.addEventListener("input", (e) => {
     renderStudent(e.target.value);
   });
+});
 </script>
 
 </body>
