@@ -1,26 +1,21 @@
-let tutors = JSON.parse(localStorage.getItem("tutors")) || [
-  {
-    name: "Alex Rivera",
-    subject: "Math / AP Precalc",
-    email: "alex@school.org",
-    schedule: "Mon/Wed 10–11:30",
-    bio: "Strong in algebra, functions, and test prep."
-  },
-  {
-    name: "Jordan Lee",
-    subject: "English / Writing",
-    email: "jordan@school.org",
-    schedule: "Tue/Thu 9–10:30",
-    bio: "Essay writing, AP analysis, reading support."
-  }
-];
+const API_URL = "https://script.google.com/macros/s/AKfycbw7DlKz2FZz9wGwqB2qMkddRJZMUcDJtGfne-AhMK8N1GQu1663-qauebUsO6ckyWZEkQ/exec";
 
-/* SAVE */
-function save() {
-  localStorage.setItem("tutors", JSON.stringify(tutors));
+let tutors = [];
+
+/* LOAD FROM GOOGLE SHEET */
+async function loadTutors() {
+  try {
+    const res = await fetch(API_URL);
+    tutors = await res.json();
+
+    renderStudent();
+    renderAdmin();
+  } catch (err) {
+    console.error("Error loading tutors:", err);
+  }
 }
 
-/* STUDENT VIEW */
+/* ---------------- STUDENT VIEW ---------------- */
 function renderStudent(filter = "") {
   const grid = document.getElementById("grid");
   if (!grid) return;
@@ -28,7 +23,9 @@ function renderStudent(filter = "") {
   grid.innerHTML = "";
 
   const filtered = tutors.filter(t =>
-    (t.name + t.subject + t.bio).toLowerCase().includes(filter.toLowerCase())
+    (t.name + t.subject + t.bio)
+      .toLowerCase()
+      .includes(filter.toLowerCase())
   );
 
   filtered.forEach(t => {
@@ -41,8 +38,9 @@ function renderStudent(filter = "") {
       <div class="schedule">📅 ${t.schedule}</div>
       <div class="bio">${t.bio}</div>
 
-      <button class="email" onclick="window.location='mailto:${t.email}'">
-        Email
+      <button class="email"
+        onclick="window.location='mailto:${t.email}'">
+        Email Tutor
       </button>
     `;
 
@@ -50,7 +48,7 @@ function renderStudent(filter = "") {
   });
 }
 
-/* ADMIN VIEW */
+/* ---------------- ADMIN VIEW ---------------- */
 function renderAdmin() {
   const grid = document.getElementById("adminGrid");
   if (!grid) return;
@@ -67,44 +65,61 @@ function renderAdmin() {
       <div class="schedule">${t.schedule}</div>
       <div class="bio">${t.bio}</div>
 
-      <button class="delete" onclick="deleteTutor(${i})">Delete</button>
+      <button class="delete" onclick="deleteTutor(${i})">
+        Delete
+      </button>
     `;
 
     grid.appendChild(card);
   });
 }
 
-/* ADD TUTOR (FIXED — NO undefined issues) */
-function addTutor() {
-  const nameEl = document.getElementById("name");
-  const subjectEl = document.getElementById("subject");
-  const emailEl = document.getElementById("email");
-  const scheduleEl = document.getElementById("schedule");
-  const bioEl = document.getElementById("bio");
-
-  const tutor = {
-    name: nameEl.value,
-    subject: subjectEl.value,
-    email: emailEl.value,
-    schedule: scheduleEl.value,
-    bio: bioEl.value
+/* ---------------- ADD TUTOR (TO SHEET) ---------------- */
+async function addTutor() {
+  const newTutor = {
+    name: document.getElementById("name").value,
+    subject: document.getElementById("subject").value,
+    email: document.getElementById("email").value,
+    schedule: document.getElementById("schedule").value,
+    bio: document.getElementById("bio").value
   };
 
-  tutors.push(tutor);
-  save();
+  if (!newTutor.name) {
+    alert("Name is required");
+    return;
+  }
 
-  nameEl.value = "";
-  subjectEl.value = "";
-  emailEl.value = "";
-  scheduleEl.value = "";
-  bioEl.value = "";
+  try {
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(newTutor)
+    });
 
-  renderAdmin();
+    // clear form
+    document.getElementById("name").value = "";
+    document.getElementById("subject").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("schedule").value = "";
+    document.getElementById("bio").value = "";
+
+    loadTutors();
+  } catch (err) {
+    console.error("Error adding tutor:", err);
+  }
 }
 
-/* DELETE */
+/* ---------------- DELETE (LOCAL ONLY FOR NOW) ---------------- */
 function deleteTutor(index) {
   tutors.splice(index, 1);
-  save();
   renderAdmin();
 }
+
+/* ---------------- SEARCH SUPPORT ---------------- */
+document.addEventListener("input", (e) => {
+  if (e.target.id === "search") {
+    renderStudent(e.target.value);
+  }
+});
+
+/* ---------------- INIT ---------------- */
+loadTutors();
