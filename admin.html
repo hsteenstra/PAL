@@ -11,45 +11,32 @@
 <header class="topbar">
   <div>
     <h1>Admin Panel</h1>
-    <p>Add or remove PAL tutors</p>
+    <p>Add / remove PAL tutors</p>
   </div>
 
-  <a class="admin-link" href="index.html">Back to Hub</a>
+  <a class="admin-btn" href="index.html">Back</a>
 </header>
 
 <div class="container">
 
   <div class="form">
-    <input id="name" placeholder="Tutor name">
-    <input id="subject" placeholder="Subject (ex: Math, CS)">
+    <input id="name" placeholder="Name">
+    <input id="subject" placeholder="Subject (Math, English, CS...)">
     <input id="email" placeholder="Email">
-    <input id="schedule" placeholder="Schedule (ex: Mon/Wed 10-11)">
-    <textarea id="bio" placeholder="Short bio..."></textarea>
+    <input id="schedule" placeholder="Schedule (Mon/Wed 10–11)">
+    <textarea id="bio" placeholder="Short bio"></textarea>
 
     <button onclick="addTutor()">Add Tutor</button>
   </div>
 
-  <h2>Current Tutors</h2>
+  <h2 style="margin-top:20px;">Current Tutors</h2>
   <div id="adminGrid"></div>
 
 </div>
 
 <script src="app.js"></script>
 <script>
-renderAdmin();
-
-function addTutor() {
-  const t = {
-    name: name.value,
-    subject: subject.value,
-    email: email.value,
-    schedule: schedule.value,
-    bio: bio.value
-  };
-
-  addNewTutor(t);
   renderAdmin();
-}
 </script>
 
 </body>
