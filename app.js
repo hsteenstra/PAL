@@ -8,8 +8,19 @@ async function loadTutors() {
     const res = await fetch(API_URL);
     tutors = await res.json();
 
-    renderStudent();
+    async function loadTutors() {
+  try {
+    const res = await fetch(API_URL);
+    tutors = await res.json();
+
+    console.log("Loaded tutors:", tutors); // DEBUG
+
+    renderStudent("");
     renderAdmin();
+  } catch (err) {
+    console.error("Error loading tutors:", err);
+  }
+}
   } catch (err) {
     console.error("Error loading tutors:", err);
   }
@@ -122,4 +133,6 @@ document.addEventListener("input", (e) => {
 });
 
 /* ---------------- INIT ---------------- */
-loadTutors();
+window.addEventListener("DOMContentLoaded", () => {
+  loadTutors();
+});
