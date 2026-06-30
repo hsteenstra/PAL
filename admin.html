@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PAL Admin Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <div>
+    <h1>Admin Panel</h1>
+    <p>Add or remove PAL tutors</p>
+  </div>
+
+  <a class="admin-link" href="index.html">Back to Hub</a>
+</header>
+
+<div class="container">
+
+  <div class="form">
+    <input id="name" placeholder="Tutor name">
+    <input id="subject" placeholder="Subject (ex: Math, CS)">
+    <input id="email" placeholder="Email">
+    <input id="schedule" placeholder="Schedule (ex: Mon/Wed 10-11)">
+    <textarea id="bio" placeholder="Short bio..."></textarea>
+
+    <button onclick="addTutor()">Add Tutor</button>
+  </div>
+
+  <h2>Current Tutors</h2>
+  <div id="adminGrid"></div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+renderAdmin();
+
+function addTutor() {
+  const t = {
+    name: name.value,
+    subject: subject.value,
+    email: email.value,
+    schedule: schedule.value,
+    bio: bio.value
+  };
+
+  addNewTutor(t);
+  renderAdmin();
+}
+</script>
+
+</body>
+</html>
