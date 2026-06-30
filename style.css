@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: system-ui, Arial;
+  background: #0a1624;
+  color: #e8f1ff;
+}
+
+/* TOP BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  background: linear-gradient(90deg, #0f2d46, #124a6a);
+  border-bottom: 3px solid #f5b700;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.topbar p {
+  margin: 3px 0 0;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+.admin-link {
+  background: #f5b700;
+  color: #0a1624;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* SEARCH */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  background: #132a40;
+  color: white;
+}
+
+/* GRID */
+#grid, #adminGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* CARD */
+.card {
+  background: #102235;
+  padding: 14px;
+  border-radius: 10px;
+  border-left: 4px solid #f5b700;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.subject {
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.schedule {
+  font-size: 13px;
+  margin: 6px 0;
+  color: #9cc7ff;
+}
+
+.bio {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+/* BUTTONS */
+button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.email {
+  background: #2ecc71;
+  color: white;
+}
+
+.delete {
+  background: #e74c3c;
+  color: white;
+}
+
+/* FORM */
+.form {
+  background: #102235;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
