@@ -11,15 +11,15 @@
 <header class="topbar">
   <div>
     <h1>⚓ Morse Shipbuilders PAL Hub</h1>
-    <p>Student Support & Tutoring Directory</p>
+    <p>Student tutoring & academic support</p>
   </div>
 
-  <a class="admin-link" href="admin.html">Admin</a>
+  <a class="admin-btn" href="admin.html">Admin</a>
 </header>
 
 <div class="container">
 
-  <input id="search" placeholder="Search tutor name, subject, or skill...">
+  <input id="search" placeholder="Search by name, subject, or skill...">
 
   <div id="grid"></div>
 
@@ -27,11 +27,11 @@
 
 <script src="app.js"></script>
 <script>
-renderTutors();
+  renderStudent();
 
-document.getElementById("search").addEventListener("input", e => {
-  renderTutors(e.target.value);
-});
+  document.getElementById("search").addEventListener("input", (e) => {
+    renderStudent(e.target.value);
+  });
 </script>
 
 </body>
