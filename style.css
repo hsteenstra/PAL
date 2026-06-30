@@ -1,17 +1,17 @@
 body {
   margin: 0;
-  font-family: system-ui, Arial;
-  background: #0a1624;
-  color: #e8f1ff;
+  font-family: Arial, sans-serif;
+  background: #0a1726;
+  color: #eaf2ff;
 }
 
-/* TOP BAR */
+/* HEADER */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 25px;
-  background: linear-gradient(90deg, #0f2d46, #124a6a);
+  padding: 18px 22px;
+  background: linear-gradient(90deg, #0f2d46, #164a6b);
   border-bottom: 3px solid #f5b700;
 }
 
@@ -21,14 +21,15 @@ body {
 }
 
 .topbar p {
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   opacity: 0.7;
   font-size: 13px;
 }
 
-.admin-link {
+/* BUTTON */
+.admin-btn {
   background: #f5b700;
-  color: #0a1624;
+  color: #0a1726;
   padding: 8px 12px;
   border-radius: 6px;
   text-decoration: none;
@@ -42,21 +43,21 @@ body {
   padding: 20px;
 }
 
-/* SEARCH */
+/* INPUT */
 input, textarea {
   width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
+  margin-bottom: 12px;
   border: none;
-  background: #132a40;
+  border-radius: 8px;
+  background: #13283d;
   color: white;
 }
 
 /* GRID */
 #grid, #adminGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 12px;
 }
 
@@ -80,23 +81,23 @@ input, textarea {
 
 .schedule {
   font-size: 13px;
-  margin: 6px 0;
+  margin-top: 6px;
   color: #9cc7ff;
 }
 
 .bio {
   font-size: 13px;
+  margin-top: 8px;
   opacity: 0.85;
-  margin-bottom: 10px;
 }
 
 /* BUTTONS */
 button {
+  margin-top: 10px;
   padding: 8px 10px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-right: 6px;
 }
 
 .email {
@@ -109,10 +110,9 @@ button {
   color: white;
 }
 
-/* FORM */
+/* FORM BOX */
 .form {
   background: #102235;
   padding: 15px;
   border-radius: 10px;
-  margin-bottom: 20px;
 }
